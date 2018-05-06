@@ -8,8 +8,8 @@ module Pronto
       @inspector = ::Pronto::ClangFormat::Wrapper.new
       comma_separated_exts = ENV['PRONTO_CLANG_FORMAT_FILE_EXTS']
       if comma_separated_exts.nil? # load default cpp files extensions
-        @cpp_extensions = ['c', 'h', 'cpp', 'cc', 'cxx', 'c++', 'hh', 'hxx',
-                           'hpp', 'h++', 'icc', 'inl', 'tcc', 'tpp', 'ipp']
+        @cpp_extensions = %w[c h cpp cc cxx c++ hh hxx hpp h++ icc inl tcc tpp
+                             ipp]
       else # load desired extensions from environment variable
         @cpp_extensions = comma_separated_exts.split(',').map(&:strip)
       end
