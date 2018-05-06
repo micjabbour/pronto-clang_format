@@ -1,3 +1,5 @@
+require_relative 'offence_categorizer/factory'
+
 module Pronto
   module ClangFormat
     class Offence
@@ -13,14 +15,10 @@ module Pronto
         @affected_lines_before = affected_lines.freeze
       end
 
-      # TODO: better messages with categories
+      # generates a user-friendly message that describes this offence. This is
+      # done by using OffenceCategorizer's chain of responsibility classes
       def msg
-        "col: #{column}, len: #{length}, offset: #{offset}\n"\
-        "affected_lines_before: #{affected_lines_before.dump}\n"\
-        "replace with: #{replacement.dump}\n"\
-        "replaced_text: #{replaced_text.dump}\n"\
-        "affected_lines_range: #{affected_lines_range}\n"\
-        "affected_lines_after: #{affected_lines_after.dump}\n"
+        OffenceCategorizer::Factory.create_categorizers.handle self
       end
 
       # the exact portion of text that is to be replaced by this offence
