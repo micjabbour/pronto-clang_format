@@ -36,9 +36,10 @@ module Pronto
       file_path = patch.new_file_full_path
       offences = @inspector.run(file_path)
       offences.map do |offence|
-        patch.added_lines
-             .select { |line| line.new_lineno == offence.line_no }
-             .map { |line| new_message(offence, line) }
+        line = patch.added_lines.find do |added_line|
+          offence.affected_lines_range.cover? added_line.new_lineno
+        end
+        new_message(offence, line) unless line.nil?
       end
     end
 
