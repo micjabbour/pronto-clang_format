@@ -15,8 +15,8 @@ module Pronto
       # Params:
       # - file_path: path to the file to be examined by clang-format
       def run(file_path)
-        # TODO: add environment variable for style file
         stdout, stderr, = Open3.capture3("#{@clang_format_path} "\
+                                         "-style=#{style} "\
                                          "-output-replacements-xml "\
                                          "#{file_path}")
         if stderr && !stderr.empty?
@@ -27,6 +27,10 @@ module Pronto
       end
 
       private
+
+      def style
+        ENV['PRONTO_CLANG_FORMAT_STYLE'] || 'file'
+      end
 
       # parses clang-format output for a given file and returns an array of
       # offence objects
