@@ -21,6 +21,7 @@ module Pronto
         .select { |p| valid_patch?(p) }
         .map { |p| inspect(p) }
         .flatten.compact
+        .uniq { |message| message.line } # generate only one message per line
     end
 
     def valid_patch?(patch)
