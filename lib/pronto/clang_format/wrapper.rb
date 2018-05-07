@@ -57,9 +57,8 @@ module Pronto
           end_line_no, = ln_col_from_offset(newlines_array, offset + length)
           # extract relevant lines and pass to offence
           start_offset = offset_from_ln_col(newlines_array, line_no, 1)
-          end_offset = offset_from_ln_col(newlines_array, end_line_no + 1, 0)
-          old_lines_text = file_contents[start_offset..end_offset]
-                           .prepend("\n")
+          end_offset = offset_from_ln_col(newlines_array, end_line_no + 1, -1)
+          old_lines_text = "\n#{file_contents[start_offset..end_offset]}\n"
           Offence.new(offset, line_no, column, length, replacement,
                       old_lines_text)
         end
@@ -87,6 +86,8 @@ module Pronto
       #   newline_offsets_in(file_contents)
       # - offset: offset to be converted
       def offset_from_ln_col(newlines_array, ln, col)
+        # return -1 if the line does not exist in file
+        return -1 unless ln - 2 < newlines_array.length
         (ln >= 2 ? newlines_array[ln - 2] : -1) + col
       end
 
