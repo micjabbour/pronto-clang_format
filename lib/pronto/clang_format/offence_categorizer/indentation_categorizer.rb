@@ -5,7 +5,9 @@ module Pronto
     module OffenceCategorizer
       class IndentationCategorizer < AbstractCategorizer
         def handle_current(offence)
-          "Incorrect indentation" if offence.column <= 1
+          return unless offence.column <= 1
+
+          "Incorrect indentation"
         end
       end
     end

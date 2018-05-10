@@ -14,7 +14,7 @@ module Pronto
           elsif !@successor.nil?
             @successor.handle offence
           else # unahndled offence
-            "This should be rewritten as: \n```" \
+            "Improper formatting. This should be rewritten as: \n```" \
             "#{offence.affected_lines_after}```"
           end
         end
