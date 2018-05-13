@@ -35,3 +35,10 @@ variables along with a description for each one of them:
 | `PRONTO_CLANG_FORMAT_PATH`     | Path to the clang-format executable that should be run by the runner. This defaults to `clang-format` |
 | `PRONTO_CLANG_FORMAT_STYLE`    | A string that is passed to clang-format's `--style=` option. This defaults to `file`                  |
 | `PRONTO_CLANG_FORMAT_FILE_EXTS`| A comma separated list of file extensions to examine. This defaults to `c, h, cpp, cc, cxx, c++, hh, hxx, hpp, h++, icc, inl, tcc, tpp, ipp`|
+
+
+## Known limitations:
+ * Every replacement reported by clang-format is mapped to no more than one offence, even though the reported replacement might be fixing more than one offence (e.g. trailing whitespace in a line and improper indentation in the following line)
+ * Only one offence is reported per line; to avoid overwhelming one line with too many offences
+ * Categorizers are rudimentary, but more can be added easily to the current chain
+  * This runner is mostly meant to remind the developer to run clang-format on his changed files. It is not about going through the offences one by one and fixing them manually
