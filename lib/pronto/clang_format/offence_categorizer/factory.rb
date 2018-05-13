@@ -6,9 +6,9 @@ module Pronto
     module OffenceCategorizer
       class Factory
         def self.create_categorizers
-          IncludesOrderCategorizer.new UnnecessaryNewlineCategorizer.new \
-          IndentationCategorizer.new MissingNewlineCategorizer.new \
-          TrailingWhitespaceCategorizer.new
+          IncludesOrderCategorizer.new UsingOrderCategorizer.new \
+          UnnecessaryNewlineCategorizer.new IndentationCategorizer.new \
+          MissingNewlineCategorizer.new TrailingWhitespaceCategorizer.new
         end
       end
     end
