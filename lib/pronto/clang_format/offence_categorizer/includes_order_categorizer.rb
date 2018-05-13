@@ -8,8 +8,8 @@ module Pronto
           return unless offence.replaced_text.include? 'include'
 
           "Include statements are not ordered alphabetically. "\
-          "They should be rewritten as:\n```" \
-          "#{offence.affected_lines_after}```"
+          "They should be rewritten as:\n" \
+          "```#{offence.affected_lines_after}```"
         end
       end
     end

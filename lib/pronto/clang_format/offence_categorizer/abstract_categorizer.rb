@@ -1,12 +1,16 @@
 module Pronto
   module ClangFormat
     module OffenceCategorizer
-      # base class to implement a chain of responsibility
+      # base class to implement a chain of categorizers
       class AbstractCategorizer
         def initialize(successor = nil)
           @successor = successor
         end
 
+        # Tries to handle the offence using the current categorizer. If it
+        # couldn't, it passes the offence to the next categorizer in the chain.
+        # If this is the last categorizer in the chain, it returns a generic
+        # message
         def handle(offence)
           current_result = handle_current offence
           if !current_result.nil?
@@ -14,8 +18,8 @@ module Pronto
           elsif !@successor.nil?
             @successor.handle offence
           else # unahndled offence
-            "Improper formatting. This should be rewritten as: \n```" \
-            "#{offence.affected_lines_after}```"
+            "Improper formatting. This should be rewritten as: \n" \
+            "```#{offence.affected_lines_after}```"
           end
         end
 
