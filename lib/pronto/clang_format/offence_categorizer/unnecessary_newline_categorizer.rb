@@ -3,11 +3,11 @@ require_relative 'abstract_categorizer'
 module Pronto
   module ClangFormat
     module OffenceCategorizer
-      class IndentationCategorizer < AbstractCategorizer
+      class UnnecessaryNewlineCategorizer < AbstractCategorizer
         def handle_current(offence)
-          return unless offence.column == 1
+          return unless offence.column == 0
 
-          "Incorrect indentation"
+          "Unnecessary new line"
         end
       end
     end

@@ -1,12 +1,13 @@
-require_relative 'indentation_categorizer'
-require_relative 'includes_order_categorizer'
+# require all ruby files in the current directory (all categorizers)
+Dir[File.join(__dir__, '*.rb')].each { |file| require file }
 
 module Pronto
   module ClangFormat
     module OffenceCategorizer
       class Factory
         def self.create_categorizers
-          IncludesOrderCategorizer.new IndentationCategorizer.new
+          IncludesOrderCategorizer.new UnnecessaryNewlineCategorizer.new \
+          IndentationCategorizer.new
         end
       end
     end
