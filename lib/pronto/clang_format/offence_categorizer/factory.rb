@@ -7,8 +7,8 @@ module Pronto
       class Factory
         def self.create_categorizers
           IncludesOrderCategorizer.new UsingOrderCategorizer.new \
-          UnnecessaryNewlineCategorizer.new IndentationCategorizer.new \
-          MissingNewlineCategorizer.new TrailingWhitespaceCategorizer.new
+          UnnecessaryNewlineCategorizer.new TrailingWhitespaceCategorizer.new \
+          IndentationCategorizer.new MissingNewlineCategorizer.new
         end
       end
     end
