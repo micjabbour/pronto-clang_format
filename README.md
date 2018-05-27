@@ -3,7 +3,6 @@
 [![Code Climate](https://codeclimate.com/github/micjabbour/pronto-clang_format.png)](https://codeclimate.com/github/micjabbour/pronto-clang_format)
 [![Build Status](https://travis-ci.org/micjabbour/pronto-clang_format.png)](https://travis-ci.org/micjabbour/pronto-clang_format)
 [![Gem Version](https://badge.fury.io/rb/pronto-clang_format.png)](http://badge.fury.io/rb/pronto-clang_format)
-[![Dependency Status](https://gemnasium.com/micjabbour/pronto-clang_format.png)](https://gemnasium.com/micjabbour/pronto-clang_format)
 
 Pronto runner for [clang-format](https://clang.llvm.org/docs/ClangFormat.html), a tool to reformat C/C++/Java/JavaScript/Objective-C/Protobuf code according to configurable style guidelines. [What is Pronto?](https://github.com/prontolabs/pronto)
 
